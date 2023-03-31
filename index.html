@@ -1,137 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rośliny doniczkowe</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif;
-		}
-		header {
-			background-color: #4CAF50;
-			color: #fff;
-			padding: 20px;
-			text-align: center;
-		}
-		nav {
-			background-color: #333;
-			overflow: hidden;
-		}
-		nav a {
-			float: left;
-			display: block;
-			color: #f2f2f2;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-		}
-		nav a:hover {
-			background-color: #ddd;
-			color: black;
-		}
-		form {
-			margin: 20px auto;
-			width: 80%;
-			max-width: 600px;
-			border: 1px solid #ccc;
-			padding: 20px;
-			border-radius: 5px;
-		}
-		label {
-			display: block;
-			margin-bottom: 10px;
-		}
-		input[type="text"], input[type="password"] {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-			box-sizing: border-box;
-		}
-		input[type="submit"] {
-			background-color: #4CAF50;
-			color: #fff;
-			padding: 10px 20px;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-		input[type="submit"]:hover {
-			background-color: #3e8e41;
-		}
-		img {
-			display: block;
-			margin: 20px auto;
-			max-width: 100%;
-			height: auto;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>Kółko i krzyżyk</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<header>
-		<h1>Rośliny doniczkowe</h1>
-	</header>
-	<nav>
-		<a href="#">Strona główna</a>
-		<a href="#">Katalog roślin</a>
-		<a href="#">Porady</a>
-		<a href="#">Kontakt</a>
-	</nav>
-	<form>
-		<h2>Logowanie</h2>
-		<label for="username">Nazwa użytkownika:</label>
-		<input type="text" id="username" name="username" required>
-		<label for="password">Hasło:</label>
-		<input type="password" id="password" name="password" required>
-		<input type="submit" value="Zaloguj się">
-	</form>
-	<h2>Nasze rośliny</h2>
-	<div class="plant
-	<img src="fikus-pielegnacja.jpg.jpg" alt="Uśmiech" />
-		<h3>Fikus</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac urna a arcu mattis posuere. Sed laoreet sapien non enim sodales, a vehicula arcu cursus.</p>
-	</div>
-	<div class="plant">
-
-		<h3>Skrzydłokwiat</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac urna a arcu mattis posuere. Sed laoreet sapien non enim sodales, a vehicula arcu cursus.</p>
-	</div>
-	<div class="plant">
-		<h3>Pilea</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac urna a arcu mattis posuere. Sed laoreet sapien non enim sodales, a vehicula arcu cursus.</p>
-	</div>
-	<div class="plant">
-		
-		<h3>Monstera</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac urna a arcu mattis posuere. Sed laoreet sapien non enim sodales, a vehicula arcu cursus.</p>
-	</div>
-	<footer>
-	</footer>
-			      <h2>Kółko i krzyżyk</h1>
-    <div id="board">
-        <div class="row">
-            <div class="square" data-index="0"></div>
-            <div class="square" data-index="1"></div>
-            <div class="square" data-index="2"></div>
+    <h1>Kółko i krzyżyk</h1>
+    <div id="game">
+        <div class="board">
+            <div class="square" id="0"></div>
+            <div class="square" id="1"></div>
+            <div class="square" id="2"></div>
+            <div class="square" id="3"></div>
+            <div class="square" id="4"></div>
+            <div class="square" id="5"></div>
+            <div class="square" id="6"></div>
+            <div class="square" id="7"></div>
+            <div class="square" id="8"></div>
         </div>
-        <div class="row">
-            <div class="square" data-index="3"></div>
-            <div class="square" data-index="4"></div>
-            <div class="square" data-index="5"></div>
+        <div id="status"></div>
+        <div id="controls">
+            <button id="one-player">Jeden gracz</button>
+            <button id="two-players">Dwóch graczy</button>
+            <button id="reset">Resetuj grę</button>
         </div>
-        <div class="row">
-            <div class="square" data-index="6"></div>
-            <div class="square" data-index="7"></div>
-            <div class="square" data-index="8"></div>
-        </div>
-    </div>
-    <div id="status">O's turn</div>
-    <div id="controls">
-        <button id="one-player-button">1 gracz</button>
-        <button id="two-players-button">2 graczy</button>
-        <button id="reset-button">Reset</button>
     </div>
     <script src="script.js"></script>
 </body>
