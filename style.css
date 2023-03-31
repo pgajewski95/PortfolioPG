@@ -1,0 +1,33 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.square {
+    font-size: 100px;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+#status {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#controls {
+    text-align: center;
+}
+
+button {
+    font-size: 20px;
+    margin: 0 10px;
+}
