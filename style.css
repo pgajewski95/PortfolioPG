@@ -1,33 +1,71 @@
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    width: 300px;
-    height: 300px;
-    margin: 20px auto;
-    border: 1px solid black;
-    padding: 10px;
-    box-sizing: border-box;
+body {
+	background-color: #e9e9e9;
 }
 
-.square {
-    font-size: 100px;
-    text-align: center;
-    line-height: 1;
-    cursor: pointer;
-    border: 1px solid black;
+.inline {
+	display: inline-block;
+	top: 0;
+	vertical-align: top;
 }
 
-#status {
-    font-size: 24px;
-    margin-bottom: 20px;
+#choose, #players, #resert_div {
+	width: 400px;
+	height: auto;
+	text-align: center;
+	border: 1px solid black;
+	padding: 20px 0;
+	margin: 7px 0;
+	background-color: white;
 }
 
-#controls {
-    text-align: center;
+#one_player, #two_players, #reset {
+	padding: 5px;
 }
 
-button {
-    font-size: 20px;
-    margin: 0 10px;
+#play_with, #you_choose {
+	margin: 20px;
+	font-size: 20px;
+}
+
+table{
+	max-width: 450px;
+	max-height: 450px;
+	margin: 5px auto;
+}
+
+td
+{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 50px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#helper
+{
+	display: none;
+}
+
+#statement
+{
+	max-width: 450px;
+	height: 150px;
+	margin: 50px auto;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 30px;
+	background-color: white;
+}
+
+@media screen and (max-width: 400px) {
+	.inline {
+		display: block;
+	}
+	
+	#choose, #players, #resert_div {
+		width: 100%;
+	}
 }
