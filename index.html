@@ -5,28 +5,37 @@
     <title>Kółko i krzyżyk</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="wrapper">
-    <h1>Kółko i Krzyżyk</h1>
-    <div></div>
-<table> <tr>
-  <td id="a1"></td>
-  <td id="a2"></td>
-  <td id="a3"></td>
-</tr>
-<tr>
-  <td id="b1"></td>
-  <td id="b2"></td>
-  <td id="b3"></td>
-</tr>
-<tr>
-  <td id="c1"></td>
-  <td id="c2"></td>
-  <td id="c3"></td>
-</tr>
-</table>
-<button type="button">Zagraj jeszcze raz</button>
-</div>
+<body> 
+		<div class="inline">
+			<div id="players">
+				<h3>Jak chcesz zagrać?</h3>
+				<button id="one_player">Zagraj z komputerem</button>
+				<button id="two_players">Zagraj z inną osobą</button>
+				<div id="play_with"></div>
+			</div>
+			
+			<div id="choose">
+				<h3>Wybierz O lub X:</h3>
+				<button id="X">X</button>
+				<button id="zero">O</button>
+				<div id="you_choose"></div>
+			</div>
+			
+			<div id="resert_div">
+				<button id="reset">Zagraj jeszcze raz!</button>
+			</div>
+		</div>
+		<div class="inline">
+			<table>
+				<!--<th> Kółko - krzyżyk </th>-->
+				<tr><td id="jeden"></td><td id="dwa"></td><td id="trzy"></td></tr>
+				<tr><td id="cztery"></td><td id="piec"></td><td id="szesc"></td></tr>
+				<tr><td id="siedem"></td><td id="osiem"></td><td id="dziewiec"></td></tr>
+			</table>
+			
+			<div id="statement">Wynik gry:</div>
+		</div>
+    </body>
     <script src="script.js"></script>
 </body>
 </html>
