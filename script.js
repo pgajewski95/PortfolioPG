@@ -1,116 +1,190 @@
-// Wybieramy kwadraty, status, przyciski
-const squares = document.querySelectorAll('.square');
-const status = document.querySelector('#status');
-const onePlayerButton = document.querySelector('#one-player-button');
-const twoPlayersButton = document.querySelector('#two-players-button');
-const resetButton = document.querySelector('#reset-button');
 
-// Inicjalizujemy zmienne
-let board = ['', '', '', '', '', '', '', '', ''];
-let currentPlayer = 'O';
-let isGameOver = false;
-let isOnePlayerGame = true;
-
-// Funkcja obsługująca kliknięcie na kwadrat
-function handleClick(event) {
-    const square = event.target;
-    const index = square.dataset.index;
-    if (board[index] === '' && !isGameOver) {
-        // Ustawiamy wartość pola i wyświetlamy symbol gracza
-        board[index] = currentPlayer;
-        square.textContent = currentPlayer;
-        checkWin();
-        checkTie();
-        changePlayer();
-        if (isOnePlayerGame && currentPlayer === 'X' && !isGameOver) {
-            // Ruch komputera
-            const computerMove = getComputerMove();
-            board[computerMove] = currentPlayer;
-            squares[computerMove].textContent = currentPlayer;
-            checkWin();
-            checkTie();
-            changePlayer();
-        }
-    }
-}
-
-// Funkcja sprawdzająca, czy któraś strona wygrała
-function checkWin() {
-    const winningPositions = [
-        // Wszystkie możliwe sposoby wygranej
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // poziomo
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // pionowo
-        [0, 4, 8], [2, 4, 6] // na skos
-    ];
-    for (const positions of winningPositions) {
-        const [a, b, c] = positions;
-        if (board[a] !== '' && board[a] === board[b] && board[b] === board[c]) {
-            // Ktoś wygrał
-            isGameOver = true;
-            status.textContent = `${currentPlayer} wygrywa!`;
-            highlightWinningSquares(positions);
-            return;
-        }
-    }
-}
-
-// Funkcja sprawdzająca, czy jest remis
-function checkTie() {
-    if (!board.includes('') && !isGameOver) {
-        // Remis
-        isGameOver = true;
-        status.textContent = 'Remis!';
-    }
-}
-
-// Funkcja zmieniająca gracza
-function changePlayer() {
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-    status.textContent = `${currentPlayer}'s turn`;
-}
-
-// Funkcja zwracająca indeks pola, które powinien wykonać komputer
-function getComputerMove() {
-    // Algorytm AI: zwraca pierwsze wolne pole
-    for (let i = 0; i < board.length; i++) {
-        if (board[i] === '') {
-            return i;
-        }
-    }
-}
-
-// Funkcja resetująca planszę
-function resetBoard() {
-board = ['', '', '', '', '', '', '', '', ''];
-currentPlayer = 'O';
-isGameOver = false;
-status.textContent = ${currentPlayer}'s turn;
-for (const square of squares) {
-square.textContent = '';
-square.classList.remove('winning');
-}
-}
-
-// Funkcja obsługująca wybór trybu gry
-function handleGameModeSelection(event) {
-const button = event.target;
-if (button === onePlayerButton) {
-isOnePlayerGame = true;
-} else if (button === twoPlayersButton) {
-isOnePlayerGame = false;
-}
-resetBoard();
-}
-
-// Dodajemy nasłuchiwanie kliknięcia na każdy kwadrat
-for (const square of squares) {
-square.addEventListener('click', handleClick);
-}
-
-// Dodajemy nasłuchiwanie kliknięcia na przyciski
-onePlayerButton.addEventListener('click', handleGameModeSelection);
-twoPlayersButton.addEventListener('click', handleGameModeSelection);
-resetButton.addEventListener('click', resetBoard);
-
-// Inicjujemy grę
-resetBoard();
+document.addEventListener('DOMContentLoaded', function() {
+	
+	const all_table = document.querySelector("table");
+	const all_td = document.getElementsByTagName("td");
+	const X = document.getElementById("X");
+	const zero = document.getElementById("zero");
+	const one_player = document.getElementById("one_player");
+	const two_players = document.getElementById("two_players");
+	const reset_game = document.getElementById("reset");
+	const play_with = document.getElementById("play_with");
+	const you_choose = document.getElementById("you_choose");
+	let helper = "0";
+	let player = "";
+	let winner = "";
+	
+	// Wybor X lub 0
+	one_player.addEventListener("click", function() {
+		player = "computer_play";
+		console.log(player);
+		play_with.innerText = "Grasz z komputerem";
+	})
+	
+	two_players.addEventListener("click", function() {
+		player = "human_play";
+		console.log(player);
+		play_with.innerText = "Grasz z inną osobą";
+	})
+	
+	X.addEventListener("click", function() {
+		helper = "X";
+		if (player == "human_play") { 
+		you_choose.innerText = "Wybrałeś X \n \n Przeciwnik gra O";
+		} else { 
+		you_choose.innerText = "Wybrałeś X";
+		}
+		zero.style.display = "none";
+		console.log(helper);
+	})
+	
+	zero.addEventListener("click", function() {
+		helper = "0";
+		if (player == "human_play") { 
+		document.getElementById("you_choose").innerText = "Wybrałeś O \n \n Przeciwnik gra X";
+		} else { 
+		document.getElementById("you_choose").innerText = "Wybrałeś O";
+		}
+		X.style.display = "none";
+		console.log(helper);
+	})
+	
+	reset_game.addEventListener("click", function() {
+		for ( i = 0; i < all_td.length; i = i+1 ) {
+			all_td[i].innerText = "";
+			document.querySelector("#statement").innerText = "Wynik gry:";
+			helper = "0";
+			player = "";
+			X.style.display = "inline-block";
+			zero.style.display = "inline-block";
+			winner = "";
+			play_with.innerText = "";
+			you_choose.innerText = "";
+		}
+		console.log(helper);
+	})
+	
+	// Funkcja gry - naprzemiennie wstawiamy 0 i X
+	all_table.addEventListener("click", function(e){
+		
+		let field = e.target.closest("td").innerText
+		
+		if (winner == true){ 
+		//if (document.querySelector("#statement").innerText.includes("Wygrana!")){ // jesli jest wygrana to wyjdz i nic nie rob wiecej
+			return;
+		}
+		
+		if (helper === "X" && field == ""){   				// Jesli helper rowna sie X to wykonaj:
+		e.target.closest("td").innerText = "X";				// wpisz w najbliszy td (czyli klikniety td) X
+			wynik("X"); 
+			wynik("0");
+			if (player == "") { 
+				helper = "0";
+			}
+			if (player == "human_play") { 					// i jeśli player ustawiony jest na human play to
+				helper = "0";								// ustaw helpera na 0
+			}
+			if (player == "computer_play") {				// a jesli player ustawiony jest na computer play	
+				computer_move();							// to wykonaj funkcje computer_move
+			}
+				wynik("X"); 
+				wynik("0");
+		return;												// wyjdz i nie sprawdzaj kolejnego warunku
+		} 
+			
+		if (helper === "0" && field == ""){ 
+		e.target.closest("td").innerText = "0";
+			wynik("0");
+			wynik("X");
+			if (player == "") { 
+				helper = "X";
+			}
+			if (player == "human_play") { 
+				helper = "X";
+			}
+			if (player == "computer_play") {
+				computer_move();
+			}
+				wynik("0");
+				wynik("X");
+		return;
+		} 
+	}) 	
+	
+	// Funkcja ruch komputera      // Znajduje wszystkie puste pola sposrod wszystkich td, dodaje je do tablicy i losuje z nich losowe pole, w ktore wstawia 0 lub X
+	function computer_move() {
+		if (winner == true) { console.log("sprawdzamy"); return; }
+		//if (document.querySelector("#statement").innerText.includes("Wygrana!")) { console.log("sprawdzamy"); return; }		// jesli jest wygrana to wyjdz i nie wykonuj kodu
+		if (document.querySelector("#statement").innerText.includes("Remis!")) { return;}
+		let new_td = "";
+		let new_td_tab = [];
+		for (i=0; i < all_td.length; i++){
+			if (all_td[i].innerText == "") {
+				new_td = all_td[i];
+				new_td_tab.push(new_td);
+			}
+		}
+		//console.log(new_td_tab.length);
+		let random_field = Math.floor((Math.random() * new_td_tab.length) + 1);
+		//console.log(random_field);
+		
+		if (helper === "X") {
+		new_td_tab[random_field-1].innerText = "0";
+		}
+		if (helper === "0") {
+		new_td_tab[random_field-1].innerText = "X";
+		}
+	}
+	
+	
+	// Funkcja sprawdzajaca wynik
+	
+	function wygrana(C)
+	{
+		document.querySelector("#statement").innerText = "Wygrana!" + " \n Wygrał: " + C;
+		winner = true;
+		console.log("yupi!");
+	}
+	
+	function tie(){
+		document.querySelector("#statement").innerText = "Remis!";
+	}
+	
+	function wynik(C)	{ 
+	
+		let all_td_tab = [];
+		
+		
+		// sprawdzanie wyniku w poziomie (skacze co 3 komorki, bo musi byc sprawdzony 3 razy)
+		for ( i = 0; i < all_td.length; i = i+3 )				
+		{ 
+			if (all_td[i].innerText == C && all_td[i+1].innerText == C && all_td[i+2].innerText == C) { 
+			wygrana(C);
+			}
+		}
+		// sprawdzanie wyniku w pionie (musi byc sprawdzony 3 razy )
+		for ( i = 0; i < 3; i= i+1 )							
+		{ 	
+			if (all_td[i].innerText == C && all_td[i+3].innerText == C && all_td[i+6].innerText == C) { 
+			wygrana(C);
+			}
+		}
+		// sprawdzanie skosow
+			if (all_td[0].innerText == C && all_td[4].innerText == C && all_td[8].innerText == C) { 
+			wygrana(C);
+			}
+			if (all_td[2].innerText == C && all_td[4].innerText == C && all_td[6].innerText == C) { 
+			wygrana(C);
+			}
+		// remis
+		for ( i = 0; i < all_td.length; i = i+1 ) {
+			if (all_td[i].innerText != "" ) {
+				all_td_tab.push(all_td[i]);
+			}}
+		//console.log(all_td_tab.length);
+			if (all_td_tab.length == 9 && winner != true) {
+			//if (all_td_tab.length == 9 && document.querySelector("#statement").innerText !== "Wygrana!") {
+				tie();
+			}
+	}	
+});
