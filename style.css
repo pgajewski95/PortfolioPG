@@ -1,71 +1,70 @@
-body {
-	background-color: #e9e9e9;
+/* Style dla strony głównej */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
 }
 
-.inline {
-	display: inline-block;
-	top: 0;
-	vertical-align: top;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#choose, #players, #resert_div {
-	width: 400px;
-	height: auto;
-	text-align: center;
-	border: 1px solid black;
-	padding: 20px 0;
-	margin: 7px 0;
-	background-color: white;
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
-#one_player, #two_players, #reset {
-	padding: 5px;
+nav li {
+    list-style: none;
 }
 
-#play_with, #you_choose {
-	margin: 20px;
-	font-size: 20px;
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
 }
 
-table{
-	max-width: 450px;
-	max-height: 450px;
-	margin: 5px auto;
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-td
-{
-	width: 150px;
-	height: 150px;
-	border: 1px solid black;
-	text-align: center;
-	font-size: 50px;
-	background-color: white;
-	border-radius: 5px;
+section {
+    margin-bottom: 20px;
 }
 
-#helper
-{
-	display: none;
+h1, h2 {
+    margin-top: 0;
 }
 
-#statement
-{
-	max-width: 450px;
-	height: 150px;
-	margin: 50px auto;
-	border: 1px solid black;
-	text-align: center;
-	font-size: 30px;
-	background-color: white;
-}
+/* Style dla urządzeń mobilnych */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
 
-@media screen and (max-width: 400px) {
-	.inline {
-		display: block;
-	}
-	
-	#choose, #players, #resert_div {
-		width: 100%;
-	}
+    nav ul {
+        display: none;
+        margin-top: 10px;
+    }
+
+    nav a {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid #fff;
+    }
+
+    #toggle-menu {
+        display: block;
+        margin-top: 10px;
+    }
+
+    main {
+        padding: 10px;
+    }
 }
